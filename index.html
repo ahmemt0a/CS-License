@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist ID Card Mockup - Aramco Brand</title>
+    <title>Aramco Community ID Generator</title>
     <style>
         :root {
-            /* Official Aramco Primary Palette Colors */
             --aramco-dark-green: #008430;
             --aramco-dark-blue: #00334D;
             --aramco-gray: #5F6369;
@@ -17,27 +16,82 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            gap: 40px;
         }
 
+        /* Input Controls Panel */
+        .control-panel {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .control-panel h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: var(--aramco-dark-blue);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--aramco-gray);
+        }
+
+        .form-group input {
+            padding: 8px 10px;
+            border: 1px solid var(--aramco-light-gray);
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .print-btn {
+            background-color: var(--aramco-dark-green);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .print-btn:hover {
+            background-color: #006b26;
+        }
+
+        /* ID Card Layout */
         .id-card {
             width: 450px;
             height: 280px;
             background: #ffffff;
             border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             position: relative;
             border: 1px solid var(--aramco-light-gray);
+            box-sizing: border-box;
         }
 
-        /* Header Zone using Aramco Dark Blue / Green Accent */
         .card-header {
             background-color: var(--aramco-dark-blue);
             color: #ffffff;
@@ -47,6 +101,7 @@
             align-items: center;
             height: 48px;
             border-bottom: 3px solid var(--aramco-dark-green);
+            box-sizing: border-box;
         }
 
         .card-header h2 {
@@ -65,7 +120,6 @@
             line-height: 1.2;
         }
 
-        /* Body Zone */
         .card-body {
             padding: 18px 20px;
             display: flex;
@@ -93,6 +147,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: none;
         }
 
         .info-container {
@@ -139,7 +194,6 @@
             color: #2d3748;
         }
 
-        /* Footer / Meta Zone */
         .card-footer {
             padding: 0 20px 14px 20px;
             display: flex;
@@ -149,46 +203,121 @@
             border-top: 1px solid #f0f2f5;
             padding-top: 10px;
         }
+
+        /* Print Settings */
+        @media print {
+            body {
+                background: none;
+                display: block;
+            }
+            .control-panel {
+                display: none;
+            }
+            .id-card {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Control / Input Panel -->
+    <div class="control-panel">
+        <h3>Card Details Form</h3>
+        
+        <div class="form-group">
+            <label>Upload Photo</label>
+            <input type="file" id="photoInput" accept="image/*" onchange="loadPhoto(event)">
+        </div>
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="inputName" value="Mohammed Mohsin" oninput="updateText('cardName', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>Employee / Badge Number</label>
+            <input type="text" id="inputEmpId" value="8762474" oninput="updateText('cardEmpId', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>Contract Company</label>
+            <input type="text" id="inputContract" value="SRACO" oninput="updateText('cardContract', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>CS Department</label>
+            <input type="text" id="inputDept" value="SA CSD" oninput="updateText('cardDept', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>KSA License</label>
+            <input type="text" id="inputLicense" value="223384227" oninput="updateText('cardLicense', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>Card ID #</label>
+            <input type="text" id="inputCardId" value="SACSD-78645629" oninput="updateText('cardCardId', this.value)">
+        </div>
+
+        <div class="form-group">
+            <label>Expires Date</label>
+            <input type="text" id="inputExpires" value="Sep 19, 2029" oninput="updateText('cardExpires', this.value)">
+        </div>
+
+        <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <!-- ID Card Display -->
     <div class="id-card">
-        <!-- Header -->
         <div class="card-header">
             <h2>Community Driver Permit</h2>
             <div class="logo">أرامكو السعودية<br>saudi aramco</div>
         </div>
 
-        <!-- Body -->
         <div class="card-body">
-            <!-- Editable Photo Area -->
-            <div class="photo-container">
-                <img src="" alt="Photo" id="userPhoto">
+            <div class="photo-container" id="photoContainer">
                 <span id="photoPlaceholder">Photo</span>
+                <img id="userPhoto" alt="User Photo">
             </div>
 
-            <!-- Details -->
             <div class="info-container">
                 <div>
-                    <h1 class="user-name" contenteditable="true">Mohammed Mohsin</h1>
-                    <div class="user-id" contenteditable="true">8762474</div>
+                    <h1 class="user-name" id="cardName">Mohammed Mohsin</h1>
+                    <div class="user-id" id="cardEmpId">8762474</div>
                 </div>
 
                 <div class="details-grid">
-                    <div><span class="label">Contract:</span> <span class="value" contenteditable="true">SRACO</span></div>
-                    <div><span class="label">CS Dept:</span> <span class="value" contenteditable="true">SA CSD</span></div>
-                    <div><span class="label">KSA License:</span> <span class="value" contenteditable="true">223384227</span></div>
+                    <div><span class="label">Contract:</span> <span class="value" id="cardContract">SRACO</span></div>
+                    <div><span class="label">CS Dept:</span> <span class="value" id="cardDept">SA CSD</span></div>
+                    <div><span class="label">KSA License:</span> <span class="value" id="cardLicense">223384227</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="card-footer">
-            <span contenteditable="true">ID #: SACSD-78645629</span>
-            <span contenteditable="true">Expires: Sep 19, 2029</span>
+            <span id="cardCardId">ID #: SACSD-78645629</span>
+            <span id="cardExpires">Expires: Sep 19, 2029</span>
         </div>
     </div>
 
+    <script>
+        function updateText(elementId, value) {
+            document.getElementById(elementId).innerText = value;
+        }
+
+        function loadPhoto(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('userPhoto');
+                output.src = reader.result;
+                output.style.display = 'block';
+                document.getElementById('photoPlaceholder').style.display = 'none';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>
