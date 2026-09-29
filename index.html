@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist ID Card Mockup - Aramco Brand</title>
+    <style>
+        :root {
+            /* Official Aramco Primary Palette Colors */
+            --aramco-dark-green: #008430;
+            --aramco-dark-blue: #00334D;
+            --aramco-gray: #5F6369;
+            --aramco-light-gray: #DADADA;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .id-card {
+            width: 450px;
+            height: 280px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid var(--aramco-light-gray);
+        }
+
+        /* Header Zone using Aramco Dark Blue / Green Accent */
+        .card-header {
+            background-color: var(--aramco-dark-blue);
+            color: #ffffff;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+            border-bottom: 3px solid var(--aramco-dark-green);
+        }
+
+        .card-header h2 {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .card-header .logo {
+            font-size: 11px;
+            font-weight: 500;
+            opacity: 0.95;
+            text-align: right;
+            line-height: 1.2;
+        }
+
+        /* Body Zone */
+        .card-body {
+            padding: 18px 20px;
+            display: flex;
+            gap: 18px;
+            flex-grow: 1;
+        }
+
+        .photo-container {
+            width: 105px;
+            height: 130px;
+            background-color: #f7f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--aramco-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--aramco-gray);
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .user-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .user-id {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--aramco-gray);
+            margin: 2px 0 8px 0;
+        }
+
+        .details-grid {
+            font-size: 11.5px;
+            color: #4a5568;
+            line-height: 1.5;
+            border-top: 1px solid #edf2f7;
+            padding-top: 8px;
+        }
+
+        .details-grid div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .details-grid span.label {
+            color: var(--aramco-gray);
+        }
+
+        .details-grid span.value {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        /* Footer / Meta Zone */
+        .card-footer {
+            padding: 0 20px 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10.5px;
+            color: var(--aramco-gray);
+            border-top: 1px solid #f0f2f5;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="id-card">
+        <!-- Header -->
+        <div class="card-header">
+            <h2>Community Driver Permit</h2>
+            <div class="logo">أرامكو السعودية<br>saudi aramco</div>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+            <!-- Editable Photo Area -->
+            <div class="photo-container">
+                <img src="" alt="Photo" id="userPhoto">
+                <span id="photoPlaceholder">Photo</span>
+            </div>
+
+            <!-- Details -->
+            <div class="info-container">
+                <div>
+                    <h1 class="user-name" contenteditable="true">Mohammed Mohsin</h1>
+                    <div class="user-id" contenteditable="true">8762474</div>
+                </div>
+
+                <div class="details-grid">
+                    <div><span class="label">Contract:</span> <span class="value" contenteditable="true">SRACO</span></div>
+                    <div><span class="label">CS Dept:</span> <span class="value" contenteditable="true">SA CSD</span></div>
+                    <div><span class="label">KSA License:</span> <span class="value" contenteditable="true">223384227</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer">
+            <span contenteditable="true">ID #: SACSD-78645629</span>
+            <span contenteditable="true">Expires: Sep 19, 2029</span>
+        </div>
+    </div>
+
+</body>
+</html>
