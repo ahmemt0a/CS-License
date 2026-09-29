@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Trebuchet MS', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
             display: flex;
             flex-direction: row;
@@ -34,10 +34,12 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .control-panel h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
             font-size: 16px;
             color: var(--aramco-dark-blue);
         }
@@ -55,6 +57,7 @@
         }
 
         .form-group input {
+            font-family: 'Trebuchet MS', sans-serif;
             padding: 8px 10px;
             border: 1px solid var(--aramco-light-gray);
             border-radius: 6px;
@@ -69,6 +72,7 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
+            width: 100%;
             margin-top: 10px;
             transition: background 0.2s;
         }
@@ -77,60 +81,81 @@
             background-color: #006b26;
         }
 
-        /* ID Card Layout */
+        /* Container for Cards */
+        .card-preview-area {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Shared ID Card Layout Styles */
         .id-card {
             width: 450px;
             height: 280px;
-            background: #ffffff;
+            background: #ffffff !important;
             border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             position: relative;
-            border: 1px solid var(--aramco-light-gray);
+            border: 1px solid #b5b9bf;
             box-sizing: border-box;
+            
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
+        /* Front Card Header */
         .card-header {
-            background-color: var(--aramco-dark-blue);
-            color: #ffffff;
-            padding: 14px 20px;
+            background-color: var(--aramco-dark-blue) !important;
+            color: #ffffff !important;
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 48px;
-            border-bottom: 3px solid var(--aramco-dark-green);
+            border-bottom: 3px solid var(--aramco-dark-green) !important;
             box-sizing: border-box;
+
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .card-header h2 {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
             margin: 0;
             text-transform: uppercase;
+            color: #ffffff;
         }
 
-        .card-header .logo {
-            font-size: 11px;
-            font-weight: 500;
-            opacity: 0.95;
-            text-align: right;
-            line-height: 1.2;
+        /* Real Aramco Logo Container */
+        .aramco-logo-img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
         }
 
         .card-body {
-            padding: 18px 20px;
+            padding: 12px 20px 8px 20px;
             display: flex;
-            gap: 18px;
+            gap: 16px;
             flex-grow: 1;
         }
 
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
         .photo-container {
-            width: 105px;
-            height: 130px;
-            background-color: #f7f9fa;
+            width: 100px;
+            height: 110px;
+            background-color: #f7f9fa !important;
             border-radius: 6px;
             overflow: hidden;
             border: 1px solid var(--aramco-light-gray);
@@ -140,7 +165,9 @@
             text-align: center;
             color: var(--aramco-gray);
             font-size: 11px;
-            flex-shrink: 0;
+
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .photo-container img {
@@ -150,34 +177,73 @@
             display: none;
         }
 
+        /* Permanent Assessor Signature Block with Embedded Signature Image */
+        .signature-block {
+            width: 100px;
+            text-align: center;
+        }
+
+        .signature-img-container {
+            width: 100px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1px;
+        }
+
+        .signature-img {
+            max-height: 26px;
+            max-width: 100px;
+            object-fit: contain;
+        }
+
+        .signature-line {
+            width: 100%;
+            border-bottom: 1px solid #4a5568;
+            margin-bottom: 2px;
+            height: 2px;
+        }
+
+        .signature-label {
+            font-size: 7.5px;
+            color: #43464a;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
         .info-container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex-grow: 1;
+            padding-top: 2px;
         }
 
         .user-name {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #111111;
             margin: 0;
             line-height: 1.2;
         }
 
         .user-id {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
-            color: var(--aramco-gray);
-            margin: 2px 0 8px 0;
+            color: #43464a;
+            margin: 2px 0 6px 0;
         }
 
         .details-grid {
-            font-size: 11.5px;
-            color: #4a5568;
-            line-height: 1.5;
-            border-top: 1px solid #edf2f7;
-            padding-top: 8px;
+            font-size: 11px;
+            color: #333333;
+            line-height: 1.4;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 6px;
+            margin-top: 4px;
         }
 
         .details-grid div {
@@ -187,24 +253,76 @@
 
         .details-grid span.label {
             color: var(--aramco-gray);
+            font-weight: 600;
         }
 
         .details-grid span.value {
-            font-weight: 500;
-            color: #2d3748;
+            font-weight: 600;
+            color: #1a202c;
         }
 
-        .card-footer {
-            padding: 0 20px 14px 20px;
+        /* Footer Section on Front */
+        .card-front-bottom {
+            padding: 0 20px 10px 20px;
             display: flex;
             justify-content: space-between;
-            font-size: 10.5px;
-            color: var(--aramco-gray);
-            border-top: 1px solid #f0f2f5;
-            padding-top: 10px;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 6px;
         }
 
-        /* Print Settings */
+        .card-meta {
+            font-size: 10px;
+            color: #43464a;
+            font-weight: 600;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Back Card Layout Styles */
+        .card-back {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px 20px;
+            box-sizing: border-box;
+            background: #ffffff !important;
+
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .back-text-en {
+            font-size: 9.5px;
+            color: #2d3748;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 2px;
+        }
+
+        .back-text-ar {
+            font-family: 'Sakkal Majalla', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            color: #111111;
+            font-weight: bold;
+            line-height: 1.25;
+            text-align: right;
+            direction: rtl;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 4px;
+            margin-bottom: 2px;
+        }
+
+        .back-footer {
+            font-size: 9px;
+            color: #43464a;
+            font-weight: 600;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 4px;
+        }
+
+        /* Print Settings Optimization */
         @media print {
             body {
                 background: none;
@@ -215,8 +333,14 @@
             }
             .id-card {
                 box-shadow: none;
-                border: none;
-                margin: 0;
+                border: 1px solid #999;
+                margin: 0 auto;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .card-preview-area {
+                gap: 0;
             }
         }
     </style>
@@ -259,7 +383,7 @@
 
         <div class="form-group">
             <label>Card ID #</label>
-            <input type="text" id="inputCardId" value="SACSD-78645629" oninput="updateText('cardCardId', this.value)">
+            <input type="text" id="inputCardId" value="SACSD-78645629" oninput="updateText('cardCardId', this.value); updateText('cardCardIdBack', this.value);">
         </div>
 
         <div class="form-group">
@@ -270,36 +394,75 @@
         <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
     </div>
 
-    <!-- ID Card Display -->
-    <div class="id-card">
-        <div class="card-header">
-            <h2>Community Driver Permit</h2>
-            <div class="logo">أرامكو السعودية<br>saudi aramco</div>
-        </div>
-
-        <div class="card-body">
-            <div class="photo-container" id="photoContainer">
-                <span id="photoPlaceholder">Photo</span>
-                <img id="userPhoto" alt="User Photo">
+    <!-- Preview Area -->
+    <div class="card-preview-area">
+        <!-- FRONT ID CARD -->
+        <div class="id-card" id="frontCard">
+            <div class="card-header">
+                <h2>Community Driver Permit</h2>
+                <!-- Real Aramco Logo embedded -->
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAPAA8BAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="Saudi Aramco Logo" class="aramco-logo-img">
             </div>
 
-            <div class="info-container">
-                <div>
-                    <h1 class="user-name" id="cardName">Mohammed Mohsin</h1>
-                    <div class="user-id" id="cardEmpId">8762474</div>
+            <div class="card-body">
+                <div class="left-column">
+                    <div class="photo-container" id="photoContainer">
+                        <span id="photoPlaceholder">Photo</span>
+                        <img id="userPhoto" alt="User Photo">
+                    </div>
+                    <!-- Permanent Assessor Signature Block with Embedded Signature Image -->
+                    <div class="signature-block">
+                        <div class="signature-img-container">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Signature" class="signature-img">
+                        </div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Assessor / Approver</div>
+                    </div>
                 </div>
 
-                <div class="details-grid">
-                    <div><span class="label">Contract:</span> <span class="value" id="cardContract">SRACO</span></div>
-                    <div><span class="label">CS Dept:</span> <span class="value" id="cardDept">SA CSD</span></div>
-                    <div><span class="label">KSA License:</span> <span class="value" id="cardLicense">223384227</span></div>
+                <div class="info-container">
+                    <div>
+                        <h1 class="user-name" id="cardName">Mohammed Mohsin</h1>
+                        <div class="user-id" id="cardEmpId">8762474</div>
+                    </div>
+
+                    <div class="details-grid">
+                        <div><span class="label">Contract:</span> <span class="value" id="cardContract">SRACO</span></div>
+                        <div><span class="label">CS Dept:</span> <span class="value" id="cardDept">SA CSD</span></div>
+                        <div><span class="label">KSA License:</span> <span class="value" id="cardLicense">223384227</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-front-bottom">
+                <div class="card-meta">
+                    <span id="cardCardId">ID #: SACSD-78645629</span>
+                    <span id="cardExpires">Expires: Sep 19, 2029</span>
                 </div>
             </div>
         </div>
 
-        <div class="card-footer">
-            <span id="cardCardId">ID #: SACSD-78645629</span>
-            <span id="cardExpires">Expires: Sep 19, 2029</span>
+        <!-- BACK ID CARD -->
+        <div class="id-card card-back" id="backCard">
+            <div class="back-text-en">
+                CS Training and job certification verifies the card holder has met the required competency standard to drive in Saudi Aramco communities and the card is valid for activities designated by community services.
+            </div>
+            
+            <div class="back-text-ar">
+                تتحقق وحدة اعتماد شهادات التدريب و الوظائف في إدارة خدمات الحي السكاني من ان حامل البطاقة قد تقييد بمعايير الكفاءة المطلوبة للسياقة داخل الحي السكاني في أرامكو السعودية وأن البطاقة سارية للأنشطة التي حددتها إدارة خدمات الحي السكاني.
+            </div>
+
+            <div class="back-text-en">
+                This card valid only when accompanied by Saudi Aramco ID card or appropriate Government Identification which is mentioned on the front side of the card. Use of this card by anyone other than its owner, and or copying shall be considered forgery, and liable to penalty as prescribed by law.
+            </div>
+
+            <div class="back-text-ar">
+                لا تكون هذه البطاقة صالحه الا عندما تكون مرفقة ببطاقة إثبات الشخصية الصادرة عن أرامكو السعودية أو بطاقة الهوية الوطنية الحكومية المذكورة في الجهة الأمامية من البطاقة. يعد استخدام أي شخص آخر لهذه البطاقة بخلاف صاحبها و/او نسخها تزويرأ يستوجب العقوبة المنصوص عليها في القانون.
+            </div>
+
+            <div class="back-footer">
+                <span id="cardCardIdBack">ID #: SACSD-78645629</span> — Community Services Internal Permit
+            </div>
         </div>
     </div>
 
